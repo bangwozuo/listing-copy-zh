@@ -1,0 +1,97 @@
+{
+  "skill_id": "de_ecom_07_sk05",
+  "name": "A/B 文案变体",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["brief"],
+    "properties": {
+      "brief": {
+        "type": "string",
+        "description": "实验需求：测什么（标题/主图卖点/首条 bullet）、目标平台、目标人群"
+      },
+      "selling_point": {
+        "type": "string",
+        "description": "被改写的卖点原文（单一卖点，变体只改它）"
+      },
+      "variants": {
+        "type": "array",
+        "description": "已有变体，提供则只做差异度与合规校验",
+        "items": {
+          "type": "object",
+          "properties": {
+            "角度": {
+              "type": "string",
+              "enum": ["理性功能", "数据实证", "场景代入", "情感共鸣", "疑问钩子", "对比反差"]
+            },
+            "文案": {"type": "string"}
+          }
+        }
+      },
+      "metrics": {
+        "type": "object",
+        "description": "各变体曝光量与点击量，用于显著性判定与择优"
+      },
+      "platform": {
+        "type": "string",
+        "enum": ["淘宝", "天猫", "抖音", "拼多多", "小红书", "Amazon", "通用"]
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["variants", "similarity_matrix", "checks"],
+    "properties": {
+      "variants": {
+        "type": "array",
+        "description": "变体组（角度 / 文案 / 字数 / 上限 / 结论）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "变体": {"type": "string"},
+            "角度": {"type": "string"},
+            "文案": {"type": "string"},
+            "字数": {"type": "integer"},
+            "上限": {"type": "integer"},
+            "字数合规": {"type": "string"},
+            "无违禁词": {"type": "string"}
+          }
+        }
+      },
+      "similarity_matrix": {
+        "type": "array",
+        "description": "两两 Jaccard 差异度矩阵（按字符二字组集合计算）",
+        "items": {"type": "object"}
+      },
+      "checks": {
+        "type": "array",
+        "description": "五项校验：变体数 / 角度互异 / 无同质化 / 字数合规 / 无违禁词",
+        "items": {
+          "type": "object",
+          "properties": {
+            "检查项": {"type": "string"},
+            "结果": {"type": "string"},
+            "说明": {"type": "string"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:generate_copy"
+  },
+  "scripts": {
+    "check": "scripts/variant_matrix.py",
+    "usage": "python3 scripts/variant_matrix.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/AB变体矩阵.xlsx", "out/variant_matrix.json"],
+  "constraints": {
+    "external_api_required": false,
+    "max_input_length": 5000,
+    "jaccard_same_threshold": 0.6,
+    "jaccard_close_threshold": 0.3,
+    "min_samples_formula": "n ≈ 16 * p_bar * (1 - p_bar) / delta^2",
+    "single_variable_rule": "一次实验只改卖点表达，价格/主图/时段/类目冻结",
+    "forbidden_words": ["最好", "第一", "100%"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

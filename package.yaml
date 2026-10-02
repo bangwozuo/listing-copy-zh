@@ -1,0 +1,48 @@
+name: Listing 文案师
+repo: bangwozuo/listing-copy-zh
+legacy_name: 上架文案专员·小文
+version: 0.2.0
+asset_type: prompt-only
+stage: P0
+complexity: S（全图谱最低）
+group: 电商小卖家
+runtime_dependencies: none
+api_key_required: false
+demand_ids:
+  - D01
+  - D26
+
+workflows:
+  - name: 关键词挖掘与标题组合
+    id: de_ecom_07_wf01
+  - name: 五点卖点生成
+    id: de_ecom_07_wf02
+  - name: 广告法合规预审
+    id: de_ecom_07_wf03
+  - name: 详情页转化文案
+    id: de_ecom_07_wf04
+  - name: 上架 CTR 追踪
+    id: de_ecom_07_wf05
+
+skills:
+  - id: keyword-combination
+    name: 关键词组合
+    family: 
+  - id: selling-point-copy
+    name: 卖点文案
+    family: 
+  - id: adlaw-compliance-precheck
+    name: 广告法合规预审
+    family: 
+  - id: conversion-structure-template
+    name: 转化结构模板
+    family: 
+  - id: ab-copy-variant
+    name: A/B 文案变体
+    family: 
+
+compliance:
+  ai_label_required: true
+  human_review_required: true
+  forbidden_words_check: true
+  official_api_only: true

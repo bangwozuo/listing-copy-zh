@@ -1,0 +1,99 @@
+{
+  "skill_id": "de_ecom_07_sk02",
+  "name": "卖点文案",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["product_info", "platform"],
+    "properties": {
+      "product_info": {
+        "type": "object",
+        "description": "商品信息：品名、材质、规格、参数、已证实卖点、适用人群"
+      },
+      "platform": {
+        "type": "string",
+        "description": "目标平台，决定单条卖点长度上限与口吻",
+        "enum": ["Amazon", "淘宝", "天猫", "抖音", "拼多多", "小红书", "通用"]
+      },
+      "points": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "已有卖点条目；提供则只校验与改写，不重新编"
+      },
+      "evidence": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "可引用证据：检测报告号、专利号、实测数据与样本量"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["points", "fab_table", "checks"],
+    "properties": {
+      "points": {
+        "type": "array",
+        "description": "五点描述（含证据），每条标字符数与上限",
+        "items": {
+          "type": "object",
+          "properties": {
+            "序号": {"type": "integer"},
+            "卖点": {"type": "string"},
+            "字符数": {"type": "integer"},
+            "上限": {"type": "integer"},
+            "口径": {"type": "string", "enum": ["硬", "建议"]},
+            "结论": {"type": "string"}
+          }
+        }
+      },
+      "fab_table": {
+        "type": "array",
+        "description": "FAB 拆解表：Feature（属性）/ Advantage（优势）/ Benefit（收益）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "卖点序号": {"type": "integer"},
+            "Feature": {"type": "string"},
+            "Advantage": {"type": "string"},
+            "Benefit": {"type": "string"}
+          }
+        }
+      },
+      "checks": {
+        "type": "array",
+        "description": "五项校验：长度合规 / FAB 三要素 / 首条差异化 / 有数字或证据 / 无违禁词",
+        "items": {
+          "type": "object",
+          "properties": {
+            "序号": {"type": "integer"},
+            "长度合规": {"type": "string"},
+            "F(属性)": {"type": "string"},
+            "A(优势)": {"type": "string"},
+            "B(收益)": {"type": "string"},
+            "有数字/证据": {"type": "string"},
+            "无违禁词": {"type": "string"},
+            "结论": {"type": "string"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:optimize_listing"
+  },
+  "scripts": {
+    "check": "scripts/five_point_build.py",
+    "usage": "python3 scripts/five_point_build.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/五点校验.xlsx", "out/five_point.json"],
+  "constraints": {
+    "external_api_required": false,
+    "max_input_length": 5000,
+    "point_limits": {
+      "Amazon": 500, "淘宝": 80, "天猫": 80, "抖音": 40, "拼多多": 30, "小红书": 100
+    },
+    "amazon_bullet_hard_limit": 500,
+    "first_point_must_be_differentiator": true,
+    "forbidden_words": ["最好", "第一", "100%", "永久", "绝对", "优质"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

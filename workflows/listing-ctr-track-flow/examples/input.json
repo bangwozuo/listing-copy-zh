@@ -1,0 +1,42 @@
+{
+  "listing": {
+    "name": "不锈钢厨房置物架",
+    "platform": "淘宝",
+    "scene": "搜索",
+    "title": "不锈钢架子置物架储物 收纳架 厨房落地多层",
+    "core_keywords": ["厨房置物架", "不锈钢", "落地"],
+    "main_image_text": "首图含促销贴片文字与店铺水印，与竞品白底图高度相似"
+  },
+  "days": [
+    {"date": "2026-09-24", "impressions": 4230, "clicks": 45},
+    {"date": "2026-09-25", "impressions": 4102, "clicks": 41},
+    {"date": "2026-09-26", "impressions": 4388, "clicks": 39},
+    {"date": "2026-09-27", "impressions": 4510, "clicks": 38},
+    {"date": "2026-09-28", "impressions": 4402, "clicks": 41},
+    {"date": "2026-09-29", "impressions": 4288, "clicks": 37},
+    {"date": "2026-09-30", "impressions": 4415, "clicks": 40}
+  ],
+  "ab_test": {
+    "groups": [
+      {
+        "name": "A 原版标题+原主图",
+        "copy": "不锈钢架子置物架储物 收纳架 厨房落地多层",
+        "daily": [
+          {"date": "2026-09-26", "impressions": 1180, "clicks": 13},
+          {"date": "2026-09-27", "impressions": 1215, "clicks": 12},
+          {"date": "2026-09-28", "impressions": 1090, "clicks": 12}
+        ]
+      },
+      {
+        "name": "B 核心词前置+场景首图",
+        "copy": "【销量第一】厨房置物架收纳神器，304 不锈钢落地多层，实测承重 40kg",
+        "daily": [
+          {"date": "2026-09-26", "impressions": 1290, "clicks": 31},
+          {"date": "2026-09-27", "impressions": 1310, "clicks": 29},
+          {"date": "2026-09-28", "impressions": 1245, "clicks": 28}
+        ]
+      }
+    ]
+  },
+  "notes": "09-26 起 B 组换标题与场景首图，A/B 各跑 3 天对照；两组曝光分配差异 10.3%（< 30% 可比）；数值取自生意参谋商品来源明细导出"
+}

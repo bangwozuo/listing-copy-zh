@@ -1,0 +1,48 @@
+{
+  "steps": [
+    {
+      "步骤": "1 输入校验",
+      "原子技能": "—",
+      "状态": "✅",
+      "关键结果": "payload 完整；平台 Amazon"
+    },
+    {
+      "步骤": "2 卖点生成与校验",
+      "原子技能": "selling-point-copy",
+      "状态": "✅",
+      "关键结果": "可用 3 / 3；待整改 0"
+    },
+    {
+      "步骤": "3 广告法闸门",
+      "原子技能": "adlaw-compliance-precheck",
+      "状态": "✅",
+      "关键结果": "红线 0 / 警告 0；回环 0 次"
+    },
+    {
+      "步骤": "4 汇总交付",
+      "原子技能": "—",
+      "状态": "✅",
+      "关键结果": "交付 3 条卖点；结论「通过」"
+    }
+  ],
+  "deliverable": {
+    "可用卖点": [
+      "304不锈钢内胆耐腐蚀，泡茶泡咖啡不串味，杯身冲洗即净",
+      "316不锈钢外壳搭配真空层，保温更持久，实测500ml热水12小时后水温≥55℃（样本3次），通勤路上随时喝到温水",
+      "杯盖硅胶密封圈设计，倒置不漏水，通勤包内放心放"
+    ],
+    "合规结论": "通过",
+    "回环次数": 0,
+    "产物": [
+      "C:\\Users\\nsxzy\\WorkBuddy\\2026-09-24-12-12-44\\library\\repos\\listing-copy-zh\\workflows\\five-point-sellingpoint-flow\\out\\step3_adlaw\\广告法预审清单.xlsx",
+      "C:\\Users\\nsxzy\\WorkBuddy\\2026-09-24-12-12-44\\library\\repos\\listing-copy-zh\\workflows\\five-point-sellingpoint-flow\\out\\step3_adlaw\\adlaw_scan.json"
+    ]
+  },
+  "pending": [],
+  "summary": {
+    "结论": "通过",
+    "可用卖点数": 3,
+    "待整改数": 0
+  },
+  "generated_at": "2026-09-30 20:18:02"
+}

@@ -1,0 +1,85 @@
+{
+  "skill_id": "de_ecom_07_sk03",
+  "name": "广告法合规预审",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["text"],
+    "properties": {
+      "text": {
+        "type": "string",
+        "description": "待检文案：标题 + 副标题 + 卖点 + 详情页 + 图上文字，尽量给全",
+        "maxLength": 5000
+      },
+      "platform": {
+        "type": "string",
+        "description": "目标平台，决定启用哪组平台特有规则",
+        "enum": ["淘宝", "天猫", "抖音", "拼多多", "小红书", "通用"]
+      },
+      "category": {
+        "type": "string",
+        "description": "商品类目，决定启用哪张特有禁词表",
+        "enum": ["化妆品", "食品", "保健品", "医疗器械", "母婴", "教育", "金融", ""]
+      },
+      "rules": {
+        "type": "string",
+        "description": "用户自定义词表或平台补充规则"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["verdict", "violations", "suggestions"],
+    "properties": {
+      "verdict": {
+        "type": "object",
+        "description": "总体判定：受检平台 / 文本量 / 三级计数 / 总体结论",
+        "properties": {
+          "受检平台": {"type": "string"},
+          "受检文本量": {"type": "string"},
+          "红线": {"type": "integer"},
+          "警告": {"type": "integer"},
+          "提示": {"type": "integer"},
+          "总体结论": {"type": "string", "enum": ["通过", "修改后上架", "不建议上架"]}
+        }
+      },
+      "violations": {
+        "type": "array",
+        "description": "违规清单，按级别排序",
+        "items": {
+          "type": "object",
+          "properties": {
+            "级别": {"type": "string", "enum": ["🔴 红线", "🟡 警告", "🔵 提示"]},
+            "违规词/表述": {"type": "string"},
+            "原文片段": {"type": "string"},
+            "位置": {"type": "string"},
+            "命中规则": {"type": "string"},
+            "依据": {"type": "string"},
+            "修改建议": {"type": "string"}
+          }
+        }
+      },
+      "suggestions": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "整体修改建议（按规则族归并）"
+      }
+    },
+    "x-rendered-from": "capability:compliance_check"
+  },
+  "scripts": {
+    "scan": "scripts/adlaw_scan.py",
+    "usage": "python3 scripts/adlaw_scan.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/广告法预审清单.xlsx", "out/adlaw_scan.json"],
+  "constraints": {
+    "external_api_required": false,
+    "max_input_length": 5000,
+    "rule_families": ["绝对化用语", "类目禁用", "虚假与不正当竞争", "平台特有规则"],
+    "levels": ["🔴 红线", "🟡 警告", "🔵 提示"],
+    "forbidden_words": ["最好", "第一", "100%", "国家级", "独家"],
+    "ai_label_required": true,
+    "human_review_required": true,
+    "no_bypass_advice": true
+  }
+}

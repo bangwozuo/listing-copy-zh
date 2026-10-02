@@ -1,0 +1,66 @@
+{
+  "workflow_id": "de_ecom_07_wf03",
+  "name": "广告法合规预审",
+  "type": "composite",
+  "skill_refs": ["de_ecom_07_sk03"],
+  "dag": {
+    "nodes": ["输入校验", "adlaw-compliance-precheck:初检", "adlaw-compliance-precheck:复扫", "汇总交付"],
+    "edges": [
+      ["输入校验", "adlaw-compliance-precheck:初检"],
+      ["adlaw-compliance-precheck:初检", "adlaw-compliance-precheck:复扫"],
+      ["adlaw-compliance-precheck:复扫", "汇总交付"]
+    ],
+    "loop": {"from": "adlaw-compliance-precheck:复扫", "to": "adlaw-compliance-precheck:复扫", "max": 2, "condition": "复扫红线 > 0 且已提供 revised_text"}
+  },
+  "input": {
+    "type": "object",
+    "required": ["text"],
+    "properties": {
+      "text": {"type": "string", "description": "待检文案：标题 + 副标题 + 卖点 + 详情页 + 图上文字"},
+      "platform": {"type": "string", "enum": ["淘宝", "天猫", "抖音", "拼多多", "小红书", "通用"]},
+      "category": {"type": "string", "enum": ["化妆品", "食品", "保健品", "医疗器械", "母婴", "教育", "金融", ""]},
+      "revised_text": {"type": "string", "description": "整改后的文案，提供则执行复扫"},
+      "rules": {"type": "string", "description": "用户自定义词表或平台补充规则"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["steps", "deliverable", "summary"],
+    "properties": {
+      "steps": {"type": "array", "description": "每步状态与关键结果"},
+      "deliverable": {
+        "type": "object",
+        "properties": {
+          "初检结论": {"type": "string"},
+          "初检红线": {"type": "integer"},
+          "复扫结论": {"type": "string"},
+          "最终结论": {"type": "string", "enum": ["通过", "待整改"]},
+          "整改前": {"type": "string"},
+          "整改后": {"type": "string"}
+        }
+      },
+      "violations": {"type": "array", "description": "初检违规清单"},
+      "suggestions": {"type": "array", "items": {"type": "string"}},
+      "summary": {"type": "object", "description": "两遍扫描的红线计数"}
+    }
+  },
+  "scripts": {
+    "run": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/流程执行报告.xlsx", "out/flow_result.json", "out/step2_first/", "out/step3_review/"],
+  "error_handling": {
+    "text_missing": "中止流程",
+    "first_pass_clean": "跳过复扫直接交付通过",
+    "no_revised_text": "第 3 步跳过，仅输出整改清单",
+    "review_still_red": "退回再改，复扫上限 2 次，超限中止"
+  },
+  "constraints": {
+    "external_api_required": false,
+    "max_review": 2,
+    "two_pass_required": true,
+    "no_bypass_advice": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

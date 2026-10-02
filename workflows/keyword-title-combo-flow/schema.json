@@ -1,0 +1,62 @@
+{
+  "workflow_id": "de_ecom_07_wf01",
+  "name": "关键词挖掘与标题组合",
+  "type": "composite",
+  "skill_refs": ["de_ecom_07_sk01", "de_ecom_07_sk03"],
+  "dag": {
+    "nodes": ["输入校验", "keyword-combination", "adlaw-compliance-precheck", "汇总交付"],
+    "edges": [
+      ["输入校验", "keyword-combination"],
+      ["keyword-combination", "adlaw-compliance-precheck"],
+      ["adlaw-compliance-precheck", "汇总交付"]
+    ],
+    "loop": {"from": "adlaw-compliance-precheck", "to": "keyword-combination", "max": 2, "condition": "红线 > 0"}
+  },
+  "input": {
+    "type": "object",
+    "required": ["platform", "product_info"],
+    "properties": {
+      "platform": {"type": "string", "enum": ["淘宝", "天猫", "抖音", "拼多多", "小红书", "Amazon"]},
+      "product_info": {"type": "object", "description": "商品信息（品名、材质、规格、卖点、场景）"},
+      "core_word": {"type": "string", "description": "核心词；缺省取 keywords 中「核心词」层级"},
+      "keywords": {"type": "array", "description": "关键词及层级"},
+      "candidate_titles": {"type": "array", "items": {"type": "string"}, "description": "待校验的标题候选"},
+      "category_words_to_avoid": {"type": "array", "items": {"type": "string"}}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["steps", "deliverable", "summary"],
+    "properties": {
+      "steps": {"type": "array", "description": "每步状态与关键结果"},
+      "deliverable": {
+        "type": "object",
+        "properties": {
+          "可用标题": {"type": "array", "items": {"type": "string"}},
+          "合规结论": {"type": "string", "enum": ["通过", "修改后上架", "不建议上架"]},
+          "回环次数": {"type": "integer"},
+          "产物": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "summary": {"type": "object", "description": "执行结论与可用标题数"}
+    }
+  },
+  "scripts": {
+    "run": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/流程执行报告.xlsx", "out/flow_result.json", "out/step2_keyword/", "out/step3_adlaw/"],
+  "error_handling": {
+    "input_missing": "列出缺失字段并中止",
+    "no_usable_title": "跳过合规闸门，返回修改建议",
+    "red_line_hit": "回环重写，最多 2 次，超限中止",
+    "skill_script_missing": "抛 FileNotFoundError 并中止"
+  },
+  "constraints": {
+    "external_api_required": false,
+    "max_loop": 2,
+    "gate_required": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

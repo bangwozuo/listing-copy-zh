@@ -1,0 +1,117 @@
+{
+  "skill_id": "de_ecom_07_sk01",
+  "name": "关键词组合",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["product_info", "platform"],
+    "properties": {
+      "product_info": {
+        "type": "object",
+        "description": "商品信息：品名、材质、规格、卖点、适用人群/场景；缺失字段须追问，不得脑补"
+      },
+      "platform": {
+        "type": "string",
+        "description": "目标平台，决定字数上限与检索规则",
+        "enum": ["淘宝", "天猫", "抖音", "拼多多", "小红书", "Amazon", "通用"]
+      },
+      "keywords": {
+        "type": "array",
+        "description": "已知关键词及层级：核心词 / 长尾词 / 蓝海词 / 场景词",
+        "items": {
+          "type": "object",
+          "properties": {
+            "词": {"type": "string"},
+            "层级": {"type": "string", "enum": ["核心词", "长尾词", "蓝海词", "场景词"]}
+          }
+        }
+      },
+      "core_word": {
+        "type": "string",
+        "description": "核心词（必含且须前置到前 10 字符）"
+      },
+      "candidate_titles": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "待校验的标题候选（提供则只校验不生成）"
+      },
+      "category_words_to_avoid": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "不得出现的无关类目词（蹭流量词），如卖杯子标题里出现「手机壳」"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["title_candidates", "keywords", "checks"],
+    "properties": {
+      "title_candidates": {
+        "type": "array",
+        "description": "标题候选（类目流量型 / 精准长尾型 / 场景覆盖型）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "标题": {"type": "string"},
+            "字数": {"type": "integer"},
+            "上限": {"type": "integer"},
+            "核心词位置": {"type": "string"},
+            "风格定位": {"type": "string"}
+          }
+        }
+      },
+      "keywords": {
+        "type": "array",
+        "description": "关键词布局表",
+        "items": {
+          "type": "object",
+          "properties": {
+            "关键词": {"type": "string"},
+            "层级": {"type": "string"},
+            "KD 区间": {"type": "string"},
+            "建议位置": {"type": "string"},
+            "建议出现次数": {"type": "integer"}
+          }
+        }
+      },
+      "checks": {
+        "type": "array",
+        "description": "五项校验结果：字数合规 / 核心词前置 / 无重复词 / 无无关词 / 无违禁词",
+        "items": {
+          "type": "object",
+          "properties": {
+            "标题": {"type": "string"},
+            "字数合规": {"type": "string"},
+            "核心词前置": {"type": "string"},
+            "无重复词": {"type": "string"},
+            "无无关词": {"type": "string"},
+            "无违禁词": {"type": "string"},
+            "结论": {"type": "string", "enum": ["可用", "需修改"]}
+          }
+        }
+      },
+      "pending_data": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "需用户从平台后台补的 KD / 搜索量数据清单"
+      }
+    },
+    "x-rendered-from": "capability:optimize_listing"
+  },
+  "scripts": {
+    "check": "scripts/title_keyword_check.py",
+    "usage": "python3 scripts/title_keyword_check.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/标题关键词校验.xlsx", "out/keyword_check.json"],
+  "constraints": {
+    "external_api_required": false,
+    "max_input_length": 5000,
+    "platform_title_limits": {
+      "淘宝": 60, "天猫": 60, "抖音": 30, "拼多多": 60, "小红书": 20, "Amazon": 200
+    },
+    "core_word_head_pos": 10,
+    "forbidden_words": ["最好", "第一", "100%", "国家级", "独家"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "skill_id": "de_ecom_07_sk04",
+  "name": "转化结构模板",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["brief"],
+    "properties": {
+      "brief": {
+        "type": "object",
+        "description": "商品简述：品类、核心卖点、目标人群、品牌名、本店 SKU 列表"
+      },
+      "platform": {
+        "type": "string",
+        "description": "目标平台，决定模块库与必备模块",
+        "enum": ["Amazon", "淘宝", "天猫", "抖音", "拼多多", "小红书", "通用"]
+      },
+      "selling_points": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "已有卖点清单（无则按 brief 归纳）"
+      },
+      "competitor": {
+        "type": "string",
+        "description": "竞品名，仅用于提示规避，不得写入成品"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["modules", "structure_map", "checks"],
+    "properties": {
+      "modules": {
+        "type": "array",
+        "description": "模块结构表",
+        "items": {
+          "type": "object",
+          "properties": {
+            "模块": {"type": "string"},
+            "功能定位": {"type": "string"},
+            "建议字数": {"type": "integer"},
+            "素材状态": {"type": "string", "enum": ["✅", "🟡", "🔴"]},
+            "补齐动作": {"type": "string"}
+          }
+        }
+      },
+      "structure_map": {
+        "type": "array",
+        "description": "对比表设计（仅本店 SKU 的参数矩阵）",
+        "items": {"type": "object"}
+      },
+      "checks": {
+        "type": "array",
+        "description": "五项校验：模块数 6–10 / A+ 必备模块 / 首屏 ≤120 字 / 对比表无竞品贬低 / 模块文案无违禁",
+        "items": {
+          "type": "object",
+          "properties": {
+            "检查项": {"type": "string"},
+            "结果": {"type": "string"},
+            "说明": {"type": "string"}
+          }
+        }
+      },
+      "issues": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "待整改清单"
+      }
+    },
+    "x-rendered-from": "capability:generate_outline"
+  },
+  "scripts": {
+    "check": "scripts/detail_page_outline.py",
+    "usage": "python3 scripts/detail_page_outline.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/详情页结构.xlsx", "out/detail_page.json"],
+  "constraints": {
+    "external_api_required": false,
+    "max_input_length": 5000,
+    "module_count_range": [6, 10],
+    "first_screen_char_limit": 120,
+    "aplus_required_modules": ["品牌故事", "对比表", "场景图"],
+    "comparison_table_rule": "只对比本店 SKU，禁写竞品品牌名与贬低话术",
+    "forbidden_words": ["最好", "第一", "100%"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：淘宝保温杯 3 个标题候选端到端实跑——五项校验全过、广告法闸门红线 0、回环 0 次，一次通过交付 3 个可用标题，产物落盘 Excel + JSON。*
 
 ---

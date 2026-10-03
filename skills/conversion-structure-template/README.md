@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：Amazon 保温杯 A+ 页面 8 模块结构实跑校验，5/5 检查项通过、首屏 112 字 ≤ 120、待整改 0，产物落盘 Excel + JSON。*
 
 ---

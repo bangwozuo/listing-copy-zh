@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：淘宝保温杯 4 个标题候选实跑校验，3 个可用、1 个命中 4 处《广告法》绝对化用语被判「需修改」，产物落盘 Excel + JSON。*
 
 ---

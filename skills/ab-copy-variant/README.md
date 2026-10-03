@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：淘宝保温杯 4 变体 A/B 实验实跑判定——两两 Jaccard ≤ 0.03 差异充分，B 版 CTR 7.18% 高 2.10pp > 阈值 2.0pp，判「建议采用 B」，产物落盘 Excel + JSON。*
 
 ---

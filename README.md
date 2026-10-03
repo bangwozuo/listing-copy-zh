@@ -3,9 +3,13 @@
 > **①视觉员工的配套另一半——图和文案是同一次上架的两半**
 
 [![Stage](https://img.shields.io/badge/stage-P0-orange)](https://github.com/bangwozuo)
-[![Asset](https://img.shields.io/badge/asset-prompt--only-blueviolet)](#资产形态)
+[![Asset](https://img.shields.io/badge/asset-prompt%20%2B%20script-blueviolet)](#资产形态)
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+
+![仓库演示](docs/demo.mp4)
+
+*演示视频：5 个代表资产的真实执行录屏（关键词组合 → 卖点文案 → 广告法预审 → 标题工作流 → CTR 追踪），每支截图均为脚本实跑产出，非摆拍。*
 
 ---
 
@@ -21,19 +25,29 @@
 | 工作流数 | 5 |
 | 旧名存档 | `上架文案专员·小文` |
 
+### 数字员工总览
+
+| 项 | 内容 |
+|---|---|
+| 身份 | Listing 文案师——图和文案是同一次上架的两半 |
+| 做什么 | 标题组合、卖点、详情页文案、合规扫描、A/B 迭代 |
+| 不做什么 | 不做虚假功效宣称、极限词擦边；不刷量、不拉踩竞品 |
+| 边界 | 所有输出 AI 辅助生成，交付前人工确认；连接器只走官方 API 与用户导出数据 |
+| KPI | 标题生成→上架 ≤10 分钟；合规扫描覆盖率 100%；CTR 环比提升 |
+
 ---
 
 ## 资产形态
 
-**纯提示词资产** —— 这是理解本仓库的关键：
+**纯提示词 + 离线校验脚本** —— 这是理解本仓库的关键：
 
 | 特性 | 说明 |
 |------|------|
 | ✅ 无需 API Key | 一个 Key 都不需要 |
-| ✅ 无需部署 | 没有服务端，没有脚本 |
-| ✅ 无需依赖 | 克隆后用文本编辑器就能看 |
+| ✅ 无需部署 | 提示词直接粘贴；脚本用本机 Python 跑 |
 | ✅ 平台无关 | 粘贴到任何 AI 工具即可使用 |
 | ✅ 用户自备算力 | 模型来自你自己的订阅 |
+| ✅ 确定性校验 | 每个资产自带脚本，字数/违禁词/样本量等可计算项以脚本为准 |
 
 ---
 
@@ -106,23 +120,23 @@ listing-copy-zh/
 
 ## 技能清单（5 个）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 关键词组合 | 上架优化 | `S` | [prompt.txt](skills/keyword-combination/prompt.txt) | [docs](skills/keyword-combination/docs/) |
-| 2 | 卖点文案 | 上架优化 | `S` | [prompt.txt](skills/selling-point-copy/prompt.txt) | [docs](skills/selling-point-copy/docs/) |
-| 3 | 广告法合规预审 | 合规校验 | `S` | [prompt.txt](skills/adlaw-compliance-precheck/prompt.txt) | [docs](skills/adlaw-compliance-precheck/docs/) |
-| 4 | 转化结构模板 | 文案生成 | `S` | [prompt.txt](skills/conversion-structure-template/prompt.txt) | [docs](skills/conversion-structure-template/docs/) |
-| 5 | A/B 文案变体 | 上架优化 | `S` | [prompt.txt](skills/ab-copy-variant/prompt.txt) | [docs](skills/ab-copy-variant/docs/) |
+| # | 技能 | 一句话 | 阶段 | README |
+|---|------|--------|------|--------|
+| 1 | [关键词组合](skills/keyword-combination/README.md) | 类目词×平台规则→标题候选 + 三处落位表（6 平台字数硬上限，KD 两档阈值） | `P0` | [README](skills/keyword-combination/README.md) |
+| 2 | [卖点文案](skills/selling-point-copy/README.md) | FAB 三层追问把参数翻译成收益（Amazon 单条 ≤500 字符，4 级证据分级） | `P0` | [README](skills/selling-point-copy/README.md) |
+| 3 | [广告法合规预审](skills/adlaw-compliance-precheck/README.md) | 四类规则扫描 + 三级判定 + 假阳性拦截（实跑 122 字命中 18 项） | `P0` | [README](skills/adlaw-compliance-precheck/README.md) |
+| 4 | [转化结构模板](skills/conversion-structure-template/README.md) | 10 模块库搭详情页/A+ 骨架（模块数 6–10，首屏 ≤120 字） | `P1` | [README](skills/conversion-structure-template/README.md) |
+| 5 | [A/B 文案变体](skills/ab-copy-variant/README.md) | 6 角度变体 + Jaccard 差异度 + 样本量公式（≥1900 曝光/组才下结论） | `P2` | [README](skills/ab-copy-variant/README.md) |
 
 ## 工作流清单（5 条）
 
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 关键词挖掘与标题组合 | `P0` | `S` | 人工 | [SKILL.md](workflows/keyword-title-combo-flow/SKILL.md) | [docs](workflows/keyword-title-combo-flow/docs/) |
-| 2 | 五点卖点生成 | `P0` | `S` | 人工 | [SKILL.md](workflows/five-point-sellingpoint-flow/SKILL.md) | [docs](workflows/five-point-sellingpoint-flow/docs/) |
-| 3 | 广告法合规预审 | `P0` | `S` | 事件（文案定稿） | [SKILL.md](workflows/adlaw-compliance-flow/SKILL.md) | [docs](workflows/adlaw-compliance-flow/docs/) |
-| 4 | 详情页转化文案 | `P1` | `S` | 人工 | [SKILL.md](workflows/detail-page-conversion-copy-flow/SKILL.md) | [docs](workflows/detail-page-conversion-copy-flow/docs/) |
-| 5 | 上架 CTR 追踪 | `P2` | `S` | 定时（每周） | [SKILL.md](workflows/listing-ctr-track-flow/SKILL.md) | [docs](workflows/listing-ctr-track-flow/docs/) |
+| # | 工作流 | 一句话 | 触发 | README |
+|---|--------|--------|------|--------|
+| 1 | [关键词挖掘与标题组合](workflows/keyword-title-combo-flow/README.md) | 标题候选 → 广告法闸门，红线 0 才交付（回环 ≤2 次） | 人工 | [README](workflows/keyword-title-combo-flow/README.md) |
+| 2 | [五点卖点生成](workflows/five-point-sellingpoint-flow/README.md) | FAB 翻译 → 双闸（质量 + 法规）→ 可用五点 | 人工 | [README](workflows/five-point-sellingpoint-flow/README.md) |
+| 3 | [广告法合规预审](workflows/adlaw-compliance-flow/README.md) | 初检 + 复扫闭环，6 条量化验收（实跑红线 14→0） | 事件（文案定稿） | [README](workflows/adlaw-compliance-flow/README.md) |
+| 4 | [详情页转化文案](workflows/detail-page-conversion-copy-flow/README.md) | 卖点校验→结构校验→终审，三技能串联出可排版文案稿 | 人工 | [README](workflows/detail-page-conversion-copy-flow/README.md) |
+| 5 | [上架 CTR 追踪](workflows/listing-ctr-track-flow/README.md) | 6 节点 DAG：判健康→定位→A/B 判胜→合规拦截（实跑 B 组 +116%） | 定时（每周） | [README](workflows/listing-ctr-track-flow/README.md) |
 
 ---
 

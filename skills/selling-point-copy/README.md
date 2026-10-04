@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行：Amazon 保温杯 5 条卖点实跑校验，3 条可用、2 条需改（命中「优质 / 最低 / 100% / 永久 / 比某品牌 / 加微信」等违禁项），产物落盘 Excel + JSON。*
 

@@ -7,9 +7,9 @@
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
-![演示](docs/assets/hero.gif)
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/listing-copy-zh@main/docs/assets/hero.gif)
 
-*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](docs/demo.mp4)*
+*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](https://cdn.jsdelivr.net/gh/bangwozuo/listing-copy-zh@main/docs/demo.mp4)*
 
 *演示视频：5 个代表资产的真实执行录屏（关键词组合 → 卖点文案 → 广告法预审 → 标题工作流 → CTR 追踪），每支截图均为脚本实跑产出，非摆拍。*
 

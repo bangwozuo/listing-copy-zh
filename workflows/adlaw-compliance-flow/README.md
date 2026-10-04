@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/listing-copy-zh@main/workflows/adlaw-compliance-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/listing-copy-zh/blob/main/workflows/adlaw-compliance-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行：淘宝·化妆品 122 字文案端到端实跑——初检命中 18 项（红线 14），提供整改稿后复扫红线 0，一次复扫即整改通过，产物落盘 Excel + JSON。*
 

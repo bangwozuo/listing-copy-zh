@@ -7,7 +7,9 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/listing-copy-zh@main/workflows/listing-ctr-track-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/listing-copy-zh/blob/main/workflows/listing-ctr-track-flow/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/listing-copy-zh@main/workflows/listing-ctr-track-flow/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/listing-copy-zh@main/workflows/listing-ctr-track-flow/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行：淘宝置物架 7 天数据端到端实跑——整体 CTR 0.93%（< 1% 连续 6 天坐实）→ 定位标题+主图双问题 → B 组 +116% 胜出 → 胜出变体命中红线词被拦截，产物落盘 Excel + JSON + 趋势图。*
 

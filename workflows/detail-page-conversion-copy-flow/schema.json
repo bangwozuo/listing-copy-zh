@@ -1,4 +1,5 @@
 {
+  "skill_id": "detail-page-conversion-copy-flow",
   "workflow_id": "de_ecom_07_wf04",
   "name": "详情页转化文案",
   "type": "composite",
@@ -15,12 +16,25 @@
   ],
   "input": {
     "type": "object",
-    "required": ["platform", "product_info", "points", "modules", "text"],
+    "required": [
+      "platform",
+      "product_info",
+      "points",
+      "modules",
+      "text"
+    ],
     "properties": {
       "platform": {
         "type": "string",
         "description": "目标平台",
-        "enum": ["淘宝", "天猫", "抖音", "小红书", "Amazon", "通用"]
+        "enum": [
+          "淘宝",
+          "天猫",
+          "抖音",
+          "小红书",
+          "Amazon",
+          "通用"
+        ]
       },
       "category": {
         "type": "string",
@@ -32,13 +46,17 @@
       },
       "evidence": {
         "type": "array",
-        "items": {"type": "string"},
+        "items": {
+          "type": "string"
+        },
         "description": "证据清单：检测报告号、认证编号、自测数据（写明样本量）"
       },
       "points": {
         "type": "array",
         "minItems": 5,
-        "items": {"type": "string"},
+        "items": {
+          "type": "string"
+        },
         "description": "五点卖点条目（模型按 FAB 三层撰写，本流程逐条校验）"
       },
       "brief": {
@@ -52,18 +70,30 @@
         "items": {
           "type": "object",
           "properties": {
-            "模块": {"type": "string"},
-            "功能定位": {"type": "string"},
-            "建议字数": {"type": "integer"},
-            "素材状态": {"type": "string"},
-            "文案": {"type": "string"}
+            "模块": {
+              "type": "string"
+            },
+            "功能定位": {
+              "type": "string"
+            },
+            "建议字数": {
+              "type": "integer"
+            },
+            "素材状态": {
+              "type": "string"
+            },
+            "文案": {
+              "type": "string"
+            }
           }
         },
         "description": "详情页模块结构，A+ 页面必备：品牌故事 / 对比表 / 场景图"
       },
       "sku_table": {
         "type": "array",
-        "items": {"type": "object"},
+        "items": {
+          "type": "object"
+        },
         "description": "对比表 / 规格表（用于竞品贬低红线检测，不得含竞品名与贬低词）"
       },
       "text": {
@@ -75,7 +105,11 @@
   },
   "output": {
     "type": "object",
-    "required": ["steps", "deliverable", "summary"],
+    "required": [
+      "steps",
+      "deliverable",
+      "summary"
+    ],
     "properties": {
       "steps": {
         "type": "array",
@@ -85,10 +119,22 @@
         "type": "object",
         "description": "五点可用 / 结构待整改 / 广告法红线 / 最终结论",
         "properties": {
-          "五点可用": {"type": "string"},
-          "结构待整改": {"type": "integer"},
-          "广告法红线": {"type": "integer"},
-          "最终结论": {"type": "string", "enum": ["通过", "待整改"]}
+          "五点可用": {
+            "type": "string"
+          },
+          "结构待整改": {
+            "type": "integer"
+          },
+          "广告法红线": {
+            "type": "integer"
+          },
+          "最终结论": {
+            "type": "string",
+            "enum": [
+              "通过",
+              "待整改"
+            ]
+          }
         }
       },
       "fixes": {
@@ -115,7 +161,11 @@
   "acceptance": {
     "五点可用率": "100%",
     "模块数区间": "6-10",
-    "A+必备模块": ["品牌故事", "对比表", "场景图"],
+    "A+必备模块": [
+      "品牌故事",
+      "对比表",
+      "场景图"
+    ],
     "首屏字数上限": 120,
     "首屏统计范围": "前 3 个模块",
     "广告法红线": 0,
@@ -129,6 +179,7 @@
     "human_review_required": true,
     "no_bypass_advice": true,
     "no_fabricated_evidence": true,
-    "no_competitor_disparagement": true
+    "no_competitor_disparagement": true,
+    "external_api_required": false
   }
 }

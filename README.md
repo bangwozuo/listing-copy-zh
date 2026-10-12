@@ -122,23 +122,23 @@ listing-copy-zh/
 
 ## 技能清单（5 个）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 关键词组合 | 上架与标题优化 | `S` | [prompt.txt](skills/keyword-combination/prompt.txt) | [docs](skills/keyword-combination/docs/) |
-| 2 | 卖点文案 | 上架与标题优化 | `S` | [prompt.txt](skills/selling-point-copy/prompt.txt) | [docs](skills/selling-point-copy/docs/) |
-| 3 | 广告法合规预审 | 合规校验 | `S` | [prompt.txt](skills/adlaw-compliance-precheck/prompt.txt) | [docs](skills/adlaw-compliance-precheck/docs/) |
-| 4 | 转化结构模板 | 大纲与结构模板 | `S` | [prompt.txt](skills/conversion-structure-template/prompt.txt) | [docs](skills/conversion-structure-template/docs/) |
-| 5 | A/B 文案变体 | 文案撰写 | `S` | [prompt.txt](skills/ab-copy-variant/prompt.txt) | [docs](skills/ab-copy-variant/docs/) |
+| # | 技能 | 能力族 | 复杂度 | 说明文档 |
+|---|------|--------|--------|----------|
+| 1 | 关键词组合 | 上架与标题优化 | `S` | [README](skills/keyword-combination/README.md) |
+| 2 | 卖点文案 | 上架与标题优化 | `S` | [README](skills/selling-point-copy/README.md) |
+| 3 | 广告法合规预审 | 合规校验 | `S` | [README](skills/adlaw-compliance-precheck/README.md) |
+| 4 | 转化结构模板 | 大纲与结构模板 | `S` | [README](skills/conversion-structure-template/README.md) |
+| 5 | A/B 文案变体 | 文案撰写 | `S` | [README](skills/ab-copy-variant/README.md) |
 
 ## 工作流清单（5 条）
 
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 关键词挖掘与标题组合 | `P0` | `S` | 人工 | [SKILL.md](workflows/keyword-title-combo-flow/SKILL.md) | [docs](workflows/keyword-title-combo-flow/docs/) |
-| 2 | 五点卖点生成 | `P0` | `S` | 人工 | [SKILL.md](workflows/five-point-sellingpoint-flow/SKILL.md) | [docs](workflows/five-point-sellingpoint-flow/docs/) |
-| 3 | 广告法合规预审 | `P0` | `S` | 事件（文案定稿） | [SKILL.md](workflows/adlaw-compliance-flow/SKILL.md) | [docs](workflows/adlaw-compliance-flow/docs/) |
-| 4 | 详情页转化文案 | `P1` | `S` | 人工 | [SKILL.md](workflows/detail-page-conversion-copy-flow/SKILL.md) | [docs](workflows/detail-page-conversion-copy-flow/docs/) |
-| 5 | 上架 CTR 追踪 | `P2` | `S` | 定时（每周） | [SKILL.md](workflows/listing-ctr-track-flow/SKILL.md) | [docs](workflows/listing-ctr-track-flow/docs/) |
+| # | 工作流 | 阶段 | 复杂度 | 触发 | 说明文档 |
+|---|--------|------|--------|------|----------|
+| 1 | 关键词挖掘与标题组合 | `P0` | `S` | 人工 | [README](workflows/keyword-title-combo-flow/README.md) |
+| 2 | 五点卖点生成 | `P0` | `S` | 人工 | [README](workflows/five-point-sellingpoint-flow/README.md) |
+| 3 | 广告法合规预审 | `P0` | `S` | 事件（文案定稿） | [README](workflows/adlaw-compliance-flow/README.md) |
+| 4 | 详情页转化文案 | `P1` | `S` | 人工 | [README](workflows/detail-page-conversion-copy-flow/README.md) |
+| 5 | 上架 CTR 追踪 | `P2` | `S` | 定时（每周） | [README](workflows/listing-ctr-track-flow/README.md) |
 
 ---
 
